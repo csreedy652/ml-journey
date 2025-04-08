@@ -1,0 +1,31 @@
+#1
+class Solution(object):
+    def reverseString(self, s):
+        start=0
+        end=len(s)-1
+        while(start<end):
+            temp=s[start]
+            s[start]=s[end]
+            s[end]=temp
+            start+=1
+            end-=1
+
+#2
+def factorial(n):
+  if n==0 or n==1:
+    return 1
+  else:
+    return n* factorial(n-1)
+
+#3
+import re
+class Solution(object):
+    def isPalindrome(self, s):
+        newString=re.sub(r'[^a-zA-Z0-9]','',s)
+        cleanedString=newString.lower()
+        if cleanedString==cleanedString[::-1]:
+            return True
+        else:
+            return False
+        
+        
