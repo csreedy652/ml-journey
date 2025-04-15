@@ -77,3 +77,18 @@ class MyQueue(object):
         if not self.out_stack:
             while self.in_stack:
                 self.out_stack.append(self.in_stack.pop())
+
+
+
+#hotter temparatures(monotonic stack)
+class Solution(object):
+    def dailyTemperatures(self, temperatures):
+        n=len(temperatures)
+        diff=[0]*n
+        stack=[]
+        for i in range(n):
+            while stack and temperatures[i]>temperatures[stack[-1]]:
+                prev_day=stack.pop()
+                diff[prev_day]=i-prev_day
+            stack.append(i)
+        return diff
