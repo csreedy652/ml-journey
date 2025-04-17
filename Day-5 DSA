@@ -1,0 +1,57 @@
+#Given the head of a singly linked list, reverse the list, and return the reversed list.
+class Solution(object):
+    def reverseList(self, head):
+        prev=None
+        curr=head
+        while curr:
+            next_node=curr.next
+            curr.next=prev
+            prev=curr
+            curr=next_node
+
+        return prev
+
+#Return true if there is a cycle in the linked list. Otherwise, return false.
+class Solution(object):
+    def hasCycle(self, head):
+        slow=head
+        fast=head
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+            if slow==fast:
+                return True
+        return False
+
+#Remove nth element from the end
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        dummy = ListNode(0, head)
+        slow=dummy
+        fast=dummy
+        for i in range(n+1):
+            fast=fast.next
+        while fast:
+            slow=slow.next
+            fast=fast.next
+        slow.next=slow.next.next
+        return dummy.next
+#Add two numbers
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        dummy=ListNode(0)
+        curr=dummy
+        carry=0
+        while l1 or l2 or carry:
+            val1=l1.val if l1 else 0
+            val2=l2.val if l2 else 0
+            total=val1+val2+carry
+            carry=total//10
+            digit=total%10
+            curr.next=ListNode(digit)
+            curr=curr.next
+            if l1:
+                l1=l1.next
+            if l2:
+                l2=l2.next
+        return dummy.next
